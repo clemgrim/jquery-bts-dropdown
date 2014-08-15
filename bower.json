@@ -23,7 +23,8 @@
     "node_modules",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "Gulpfile.js"
   ],
   "dependencies": {
     "jquery": "~2.1.1",
