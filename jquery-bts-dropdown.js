@@ -116,19 +116,8 @@
 			return this;
 		},
 		
-		template: [
-                	'<button data-toggle="dropdown" class="btn dropdown-toggle btn-block" type="button">',
-                		'<span class="pull-left">{{selected}}</span> ',
-                		'<span class="caret" style="position:absolute;right:5px;top:46%;"> </span> ',
-                		'<span class="remove" style="position:absolute;right:15px;top:23%;display:block;height:0;">&times;</span> ',
-                		'<span class="pull-right error fa fa-exclamation-triangle hidden"></span> ',
-                	'</button>',
-                    '<ul role="menu" class="dropdown-menu">',
-                        '{{#each items}}<li><a href="#" data-value="{{value}}">{{label}}</a></li>{{/each}}',
-                    '</ul>'].join(''),
         _render: function(options){
-        	var tpl = '',
-        		style = options.width && options.width !== '' ? 'style="width:' + options.width + '"' : '';
+        	var tpl = '', menu = $('<ul role="menu" class="dropdown-menu"/>');
 
         	tpl += '<button data-toggle="dropdown" class="btn dropdown-toggle btn-block" type="button">';
         	tpl += 	'<span class="pull-left">' + options.selected + '</span> ';
@@ -136,13 +125,18 @@
         	tpl += 	'<span class="remove" style="position:absolute;right:15px;top:23%;display:block;height:0;">&times;</span> ';
         	tpl += 	'<span class="pull-right error fa fa-exclamation-triangle hidden"></span> ';
         	tpl += '</button>';
-        	tpl += '<ul role="menu" class="dropdown-menu" ' + style + '>';
 
-        	options.items.forEach(function(item){
-    			tpl += '<li><a href="#" data-value="' + item.value + '">' + item.label + '</a></li>';
+        	menu.width(options.width || '160px');
+
+			options.items.forEach(function(item){
+    			menu.append(
+    				$('<li/>').append(
+    					$('<a href="#"/>').data('value', item.value).html(item.label)
+					)
+				);
         	});
 
-        	tpl += '</ul>';
+        	tpl += menu[0].outerHTML;
 
         	return tpl;
         },
