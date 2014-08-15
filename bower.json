@@ -1,0 +1,36 @@
+{
+  "name": "jquery-bts-dropdown",
+  "main": "jquery-bts-dropdown.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/clemgrim/jquery-bts-dropdown",
+  "description": "jQuery plugin for create twitter bootstrap dropdown",
+  "keywords": [
+    "bootstrap",
+    "jquery",
+    "dropdown",
+    "select",
+    "ui",
+    "plugin",
+    "bootstrap",
+    "twitter"
+  ],
+  "authors": [
+    "clemgrim"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "handlebars": "~1.3.0"
+  },
+  "devDependencies": {
+    "qunit": "~1.15.0"
+  }
+}

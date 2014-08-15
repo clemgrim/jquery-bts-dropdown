@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dropdowns</title>
+	<link rel="stylesheet" href="libs/qunit/qunit/qunit.css">
+	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+</head>
+<body>
+	<div class="container" style="margin-top:50px">
+		<div id="qunit"></div>
+  		<div id="qunit-fixture"></div>
+
+		<div class="col-md-4" style="margin-top:30px">
+			<label for="example">My Select</label>
+			<select name="select" id="example">
+				<option value="1">Mon option</option>
+				<option value="3">Mon autre option</option>
+				<option value="2">Encore une</option>
+			</select>
+		</div>
+	</div>
+
+	<script src="libs/jquery/dist/jquery.min.js"></script>
+	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="libs/qunit/qunit/qunit.js"></script>
+	<script src="libs/handlebars/handlebars.min.js"></script>
+	<script src="../jquery-bts-dropdown.min.js"></script>
+	<script>
+		var basics = function(assert) {
+			assert.equal(typeof $('#example').dropdown().hide, 'function', 'Is chainable');
+			assert.equal($('.dropdown').length, 1, 'No doubles');
+			assert.ok($('#example').is(':hidden'), 'select is hidden');
+		};
+
+		jQuery(function($){
+			var select = $('#example').dropdown();
+
+			QUnit.test('select element is still here', function( assert ) {
+			  assert.equal($('#example').length, 1, 'Select is in the dom');
+			  assert.equal($('#example option').length, 3, 'Still contain the same options');
+			});
+
+			QUnit.test('Basics', basics);
+
+			QUnit.test('Behavior', function(assert) {
+				var $el = $('#example').dropdown('element');
+
+				assert.equal(typeof $el, 'object', 'Can acces $el');
+				assert.equal($el[0], $('.dropdown').eq(0)[0], '$el is the wrapper');
+
+				$el.find('button').trigger('click');
+
+				assert.ok($el.hasClass('open'), 'Dropdown is open when we trigger click');
+				assert.ok($el.find('ul').is(':visible'), 'List is visible');
+
+				var random = Math.floor(Math.random() * $el.find('li').length);
+				
+				var target = $el.find('li a').eq(random);
+
+				target.trigger('click');
+
+				assert.equal(select.val(), target.data('value'), 'Value has been updated and is correct');
+				assert.equal($el.find('button span.pull-left').text(), target.text(), 'Displayed label is correct');
+				assert.ok(!$el.hasClass('open'), 'dropdown is closed');
+				assert.ok($el.find('ul').is(':hidden'), 'dropdown is hidden');
+
+				$el.find('.remove').trigger('click');
+
+				assert.equal($el.find('button span.pull-left').text(), '-', 'displayed value has been reset');
+				assert.equal(select.val(), null, 'Value has been reset');
+			});
+
+			/*QUnit.test('Destroy', function(assert){
+				select.dropdown('destroy');
+				assert.equal($('#example').dropdown('element'), undefined, '$el has been destroyed');
+				assert.equal($('.dropdown').length, 0, 'wrapper has been removed from the DOM');
+				assert.equal($('#example').data('dropdown'), undefined, 'no data dropdown');
+				assert.ok(select.is(':visible'), 'select is visible');
+			});
+
+			QUnit.test('Re-attach', function(assert) {
+				$('#example').dropdown();
+
+				basics(assert);
+			});*/
+		});
+	</script>
+</body>
+</html>
