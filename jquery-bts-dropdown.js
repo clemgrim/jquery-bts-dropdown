@@ -73,8 +73,7 @@
 				this.options.selected = Plugin._getLabel.call(this, this.options.value);
 			}
 			
-			var tpl = Handlebars.compile(Plugin.template),
-				out = tpl(this.options),
+			var out = Plugin._render.call(this, this.options),
 				wrapper = $('<div/>').addClass('btn-group dropdown btn-block');
 
 			if (this.options.classes) {
@@ -82,7 +81,7 @@
 			}
 
 			if (this.options.id) {
-				wrapper.addClass(this.options.id);
+				wrapper.attr('id', this.options.id);
 			}
 			
 			this.hide().wrap(wrapper);
@@ -124,6 +123,25 @@
                     '<ul role="menu" class="dropdown-menu">',
                         '{{#each items}}<li><a href="#" data-value="{{value}}">{{label}}</a></li>{{/each}}',
                     '</ul>'].join(''),
+        _render: function(options){
+        	var tpl = '';
+
+        	tpl += '<button data-toggle="dropdown" class="btn dropdown-toggle btn-block" type="button">';
+        	tpl += 	'<span class="pull-left">' + options.selected + '</span> ';
+        	tpl += 	'<span class="caret" style="position:absolute;right:5px;top:46%;"> </span> ';
+        	tpl += 	'<span class="remove" style="position:absolute;right:15px;top:23%;display:block;height:0;">&times;</span> ';
+        	tpl += 	'<span class="pull-right error fa fa-exclamation-triangle hidden"></span> ';
+        	tpl += '</button>'
+        	tpl += '<ul role="menu" class="dropdown-menu">';
+
+        	options.items.forEach(function(item){
+    			tpl += '<li><a href="#" data-value="' + item.value + '">' + item.label + '</a></li>';
+        	});
+
+        	tpl += '</ul>';
+
+        	return tpl;
+        },
 		
 		_attach: function(){
 			var select = this,
