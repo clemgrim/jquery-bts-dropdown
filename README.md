@@ -65,5 +65,6 @@ To call a plugin method, you just have to call the plugin with the method name i
 $('#example').dropdown('method');
 ```
 
-*element* get the wrapper element
-*destroy* rallback to the initial behavior (remove wrapper and show your select)
+* *element* get the wrapper element
+
+* *destroy* rallback to the initial behavior (remove wrapper and show your select)
