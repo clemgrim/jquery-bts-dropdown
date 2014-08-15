@@ -32,9 +32,7 @@
 		};
 
 		jQuery(function($){
-			var select = $('#example').dropdown({
-				width: '100%'
-			});
+			var select = $('#example').dropdown();
 
 			QUnit.test('select element is still here', function( assert ) {
 			  assert.equal($('#example').length, 1, 'Select is in the dom');
@@ -80,7 +78,12 @@
 			});
 
 			QUnit.test('Re-attach', function(assert) {
-				$('#example').dropdown();
+				$('#example').dropdown({
+				    placeholder: 'Select a language', // placeholder for your dropdown list
+				    value: 'EN', // the selected value
+				    classes: 'my-custom classes',
+				    width: '100%'
+				});
 
 				basics(assert);
 			});
