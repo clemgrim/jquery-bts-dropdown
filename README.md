@@ -3,7 +3,7 @@ jquery-bts-dropdown
 
 jquery-bts-dropdown is a jQuery plugin for create twitter bootstrap dropdowns.
 
-# How to install ?
+## How to install ?
 
 The simplest way is to install this plugin via [bower](http://bower.io)
 
@@ -18,7 +18,7 @@ then, you juste have to include into your webpage jquery, then bootstrap and fin
 <script type="text/javascript" src="/path/to/jquery-bts-dropdown.min.js"></script>
 ```
 
-# How it works ?
+## How it works ?
 
 Look, it's very simple.
 First, create a basic select element with few options :
@@ -49,7 +49,7 @@ $('#example').dropdown({
 });
 ```
 
-# How can i do some action when user select a value ?
+## How can i do some action when user select a value ?
 Hey, it's just a select ! You can handle it as a simple select : 
 
 ``` js
@@ -57,3 +57,13 @@ $('#example').change(function(){
 	console.log('User select', $(this).val());
 });
 ```
+
+## Methods
+To call a plugin method, you just have to call the plugin with the method name in param :
+
+``` js
+$('#example').dropdown('method');
+```
+
+*element* get the wrapper element
+*destroy* rallback to the initial behavior (remove wrapper and show your select)
