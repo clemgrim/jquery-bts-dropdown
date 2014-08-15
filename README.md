@@ -3,6 +3,9 @@ jquery-bts-dropdown
 
 jquery-bts-dropdown is a jQuery plugin for create twitter bootstrap dropdowns.
 
+![Dropdown select for bootstrap with jQuery](/test/dropdown-select.png)
+![Dropdown select for bootstrap with jQuery](test/dropdown-select.png)
+
 ## How to install ?
 
 The simplest way is to install this plugin via [bower](http://bower.io)
