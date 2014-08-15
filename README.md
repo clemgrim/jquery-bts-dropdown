@@ -47,7 +47,8 @@ Of course, you can pass some options to the plugin via a js object :
 $('#example').dropdown({
 	placeholder: 'Select a language', // placeholder for your dropdown list
 	value: 'EN', // the selected value
-	clases: 'my-custom classes'
+	clases: 'my-custom classes',
+	width: '100%'
 });
 ```
 

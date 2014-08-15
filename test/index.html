@@ -32,7 +32,9 @@
 		};
 
 		jQuery(function($){
-			var select = $('#example').dropdown();
+			var select = $('#example').dropdown({
+				width: '100%'
+			});
 
 			QUnit.test('select element is still here', function( assert ) {
 			  assert.equal($('#example').length, 1, 'Select is in the dom');
